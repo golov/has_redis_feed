@@ -11,19 +11,17 @@ HasRedisFeed assumes that you have Redis connected to the $redis global variable
 Usage
 -----
 Add to feed
-<pre><code>user = User.create
-user.push_to_feed({:message => 'old message'})
-user.push_to_feed({:message => 'new message'})
-user.feed 
-# => [{"message"=>"new message"}, {"message"=>"old message"}] 
-</code></pre>
+  user = User.create
+  user.push_to_feed({:message => 'old message'})
+  user.push_to_feed({:message => 'new message'})
+  user.feed 
+  # => [{"message"=>"new message"}, {"message"=>"old message"}] 
+
 
 The feed will be created with namespace
 
-<pre><code>feed:class.name:id
-</code></pre>
+  feed:class.name:id
 
 So in this case (with user id 1):
 
-<pre><code>feed:User:1
-</code></pre>
+  feed:User:1
