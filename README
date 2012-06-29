@@ -15,5 +15,15 @@ Add to feed
 user.push_to_feed({:message => 'old message'})
 user.push_to_feed({:message => 'new message'})
 user.feed 
-# => [{"message" => "new message"}, {"message" => "old message"}]
+# => [{"message"=>"new message"}, {"message"=>"old message"}] 
+</code></pre>
+
+The feed will be created with namespace
+
+<pre><code>feed:class.name:id
+</code></pre>
+
+So in this case (with user id 1):
+
+<pre><code>feed:User:1
 </code></pre>
