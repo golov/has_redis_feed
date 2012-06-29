@@ -18,7 +18,7 @@ user.push_to_feed({:message => 'old message'})
 user.push_to_feed({:message => 'new message'})
 user.feed 
 # => [{"message"=>"new message"}, {"message"=>"old message"}] 
-'''
+```
 
 The feed will be created with namespace
 
