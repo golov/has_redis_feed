@@ -14,32 +14,32 @@ describe DummyModel do
   end
 
   it 'should be able to push to its feed and retrieve the feed' do
-    @dummy_model.push_to_feed('test')
-    @dummy_model.feed.should == ['test']
+    @dummy_model.push_to_feed({'alphonso' => 'quigley'})
+    @dummy_model.feed.should == [{'alphonso' => 'quigley'}]
   end
 
   it 'should return the feed in descending created_at order' do
     @dummy_model.stub(:feed_timestamp).and_return(1)
-    @dummy_model.push_to_feed('old')
+    @dummy_model.push_to_feed({'alphonso' => 'old'})
     @dummy_model.stub(:feed_timestamp).and_return(2)
-    @dummy_model.push_to_feed('new')
-    @dummy_model.feed.should == ['new', 'old']
+    @dummy_model.push_to_feed({'alphonso' => 'new'})
+    @dummy_model.feed.should == [{'alphonso' => 'new'}, {'alphonso' => 'old'}]
   end
 
   it 'should return the default of 5 items in the feed' do
     (1..10).each {|i| 
       @dummy_model.stub(:feed_timestamp).and_return(i)
-      @dummy_model.push_to_feed('test' + i.to_s)
+      @dummy_model.push_to_feed({'a' => 'q' + i.to_s})
     }
-    @dummy_model.feed.should == ["test10", "test9", "test8", "test7", "test6"]
+    @dummy_model.feed.should == [{"a"=>"q10"}, {"a"=>"q9"}, {"a"=>"q8"}, {"a"=>"q7"}, {"a"=>"q6"}]
   end
 
   it 'should return the correct count' do
     (1..10).each {|i| 
       @dummy_model.stub(:feed_timestamp).and_return(i)
-      @dummy_model.push_to_feed('test' + i.to_s)
+      @dummy_model.push_to_feed({'a' => 'q' + i.to_s})
     }
-    @dummy_model.feed(1).should == ["test10", "test9"]
+    @dummy_model.feed(1).should == [{"a"=>"q10"}, {"a"=>"q9"}]
   end
 
   it 'should encode hash' do @dummy_model.encode({alphonso: 'quigley'}).should == "{\"alphonso\":\"quigley\"}" end
