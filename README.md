@@ -26,4 +26,4 @@ The feed will be created with namespace
 
 So in this case (with user id 1):
 
-    feed:User:1
+    feed:#{class.name}:#{id}
